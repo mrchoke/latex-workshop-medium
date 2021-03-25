@@ -1,0 +1,820 @@
+\documentclass[titlepage,a4paper,10pt]{scrartcl}
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{ifthen}
+
+\defaultfontfeatures{
+  Extension       = .otf ,
+  Mapping       = tex-text,
+  Script          = Default
+  }
+
+% Font families with regular, oblique, bold, and bold-oblique.
+\defaultfontfeatures[Garuda,Loma,Purisa,Sawasdee,TlwgMono,TlwgTypewriter,%
+TlwgTypist,TlwgTypo,Umpush,Waree]{
+ItalicFont      = *-Oblique ,
+BoldFont        = *-Bold ,
+BoldItalicFont  = *-BoldOblique ,
+}
+
+% TlwgMono don't has Script Default
+\defaultfontfeatures+[TlwgMono]{Script=Thai}
+
+
+% Font families with regular, italic, bold, and bold-italic.
+\defaultfontfeatures[Laksaman]{
+ItalicFont      = *-Italic ,
+BoldFont        = *-Bold ,
+BoldItalicFont  = *-BoldItalic ,
+}
+% Font families with regular, italic, oblique, bold, 
+% bold-italic, and bold-oblique.
+\defaultfontfeatures[Kinnari,Norasi]{
+ItalicFont      = *-Italic ,
+SlantedFont     = *-Oblique ,
+BoldFont        = *-Bold ,
+BoldItalicFont  = *-BoldItalic ,
+BoldSlantedFont = *-BoldOblique ,
+}
+
+\newfontfamily\garuda{Garuda}
+\newfontfamily\norasi{Norasi}
+\newfontfamily\kinnari{Kinnari}
+\newfontfamily\laksaman{Laksaman}
+\newfontfamily\loma{Loma}
+\newfontfamily\purisa{Purisa}
+\newfontfamily\sawasdee{Sawasdee}
+\newfontfamily\tlwgtypist{TlwgTypist}
+\newfontfamily\tlwgtypo{TlwgTypo}
+\newfontfamily\tlwgmono{TlwgMono}
+\newfontfamily\tlwgtypewriter{TlwgTypewriter}
+\newfontfamily\umpush{Umpush}[
+  FontFace = {l}{n}{ Font = *-Light },
+  FontFace = {l}{it}{ Font = *-LightOblique }
+]
+\newfontfamily\waree{Waree}
+
+\newfontfamily\thaifont{Norasi}
+\newfontfamily\thaifontsf{Garuda}
+\newfontfamily\thaifonttt{TlwgTypist}
+
+\setdefaultlanguage[numerals=thai]{thai}
+ \XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 1pt \relax 
+
+
+%% Command for test Thai Fonts
+
+\def\textyamakkan{\symbol{"0E4E}}
+\def\textfongmun{\symbol{"0E4F}}
+\def\textangkhankhu{\symbol{"0E5A}}
+\def\textkhomut{\symbol{"0E5B}}
+
+\makeatletter
+\def\flist{Laksaman,Kinnari,Norasi,Garuda,Loma,Purisa,Sawasdee,TlwgMono,TlwgTypewriter,%
+TlwgTypist,TlwgTypo,Umpush,Waree}
+
+\newcommand\showthaifont{
+  \begin{itemize}
+    \@for\next:=\flist%
+  \do{%
+  \item  \fontspec{\next} \fontseries{m}\fontshape{n}\selectfont แบบอักษรไทย \next{} ใน \LaTeX %
+    }
+  \end{itemize}
+  }
+\makeatother
+
+\newcommand{\testthaipoem}[3]{%
+#1\fontseries{#2}\fontshape{#3}\selectfont 
+  \noindent
+  \begin{tabbing}
+  {{#1\fontseries{b}\fontshape{n}\selectfont
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXX}} \=
+  {{#1\fontseries{b}\fontshape{n}\selectfont
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXX}}\kill
+  \hspace{1em}๏ เป็นมนุษย์สุดประเสริฐเลิศคุณค่า \> กว่าบรรดาฝูงสัตว์เดรัจฉาน \\
+  จงฝ่าฟันพัฒนาวิชาการ          \> อย่าล้างผลาญฤๅเข่นฆ่าบีฑาใคร\\
+  ไม่ถือโทษโกรธแช่งซัดฮึดฮัดด่า    \> หัดอภัยเหมือนกีฬาอัชฌาสัย \\
+  ปฏิบัติประพฤติกฎกำหนดใจ       \> พูดจาให้จ๊ะๆ จ๋าๆ น่าฟังเอย ฯ\\
+  \end{tabbing}}
+
+\newcommand{\testenglish}[3]{%
+#1 \fontseries{#2}\fontshape{#3}\selectfont
+\noindent
+A quick brown fox jumps over the lazy dog.}
+
+\newcommand{\testEnglish}[3]{%
+#1 \fontseries{#2}\fontshape{#3}\selectfont
+  \noindent
+  \MakeUppercase{A quick brown fox jumps over the lazy dog.}}
+
+\newcommand{\testligkern}[3]{%
+#1 \fontseries{#2}\fontshape{#3}\selectfont
+\noindent
+
+ที่ ท่า ทิ้ง ท้า กิ๊ง ก๊ง ตี๋ ต๋า บ่น ป่น, บ้น ป้น, บ๊น ป๊น, บ๋น ป๋น บิน ปิน บีน ปีน บิ่น ปิ่น บัน ปั่น บั่น
+ก็ ป็ ปู่ ญ ญุ ญู ญฺ ฐ ฐุ ฐู ฐฺ กุ ฎุ ฎู ฎฺ ฏุ ฏู ฏฺ บำ บ่ำ ปำ ป่ำ -\textyamakkan{}
+\textfongmun{} \textangkhankhu{} \textkhomut{}
+ปะเฺติ็ลฺ โฺญฺ็จฺ ปั็วฮฺ ทฺ็อง เปฺิ็ว มูํย
+แต็่ง เจฺํอ เปรฺิ่ห์ โจ๊่ เปฺี่ย โฺทร ม็่อง เติ็ง อาื ยาึ ปิํปี็ป็่ป๊่ปฺ่
+จือรฺุ การฺู
+- -- --- `` '' \dag{} \ddag{} \S{} \P{} \${} \ae{} \AE{} \oe{} \OE{} \aa{}
+\AA{} \ss{} \copyright{} \textregistered{} \texttrademark{} \textbackslash{}
+\textasciicircum{} \textasciitilde{} \textbar{} \textbraceleft{}
+\textbraceright{} ?` !` ff fi fl ffi ffl tt ti AV\\
+
+}
+
+\newcommand{\testpali}[4]{%
+\ifthenelse{\equal{#2}{Umpush}}%
+    {\renewfontfamily#1{#2}[
+      FontFace = {l}{n}{ Font = *-Light },
+      FontFace = {l}{it}{ Font = *-LightOblique},
+      Script=Thai,
+      Language=Pali
+    ]}%
+    {\renewfontfamily#1{#2}[Script=Thai,Language=Pali]}%
+#1 \fontseries{#3}\fontshape{#4}\selectfont
+\noindent
+หตฺเถสุ ภิกฺขเว สติ, อาทานนิกฺเขปนํ ปญฺญายติ\\
+เอวเมว โข ภิกฺขเว\\
+จกฺขุสมิํปิ สติ\\
+จกฺขุสมฺผสฺสปจฺจยา อุปฺปชฺชติ อชฺฌตฺตํ สุขทุกฺขํ\\
+ทิฏฺฐา มยา ภิกฺขเว ฉ ผสฺสายตนิกา นาม นิรยา\\}
+
+\begin{document}
+\title{แบบอักษรภาษาไทย FONTS-TLWG}
+\subtitle{OpenType Font \& Fontspec \& \XeLaTeX}
+\author{}
+\date{\today}
+
+\pagestyle{empty}
+\maketitle
+
+\pagestyle{empty}
+\vfil
+
+
+\begin{figure*}
+  \Large
+  \showthaifont
+\end{figure*}
+\vfil
+\clearpage
+
+\pagestyle{plain}
+\section{\fontspec{Kinnari}\fontseries{b}\fontshape{n}\selectfont Kinnari -- กินรี\protect\footnote{จากโครงการฟอนต์แห่งชาติ (National Font Project)}}
+\subsection{ตัวอย่างประโยคภาษาไทย\protect\footnote{โดยสมาคมคอมพิวเตอร์แห่งประเทศไทยในพระบรมราชูปถัมภ์}}
+
+\testthaipoem{\kinnari}{m}{n}
+
+\testthaipoem{\kinnari}{b}{n}
+
+\testthaipoem{\kinnari}{m}{it}
+
+\testthaipoem{\kinnari}{b}{it}
+
+\testthaipoem{\kinnari}{m}{sl}
+
+\testthaipoem{\kinnari}{b}{sl}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\kinnari}{m}{n}
+
+\testenglish{\kinnari}{b}{n}
+
+\testenglish{\kinnari}{m}{it}
+
+\testenglish{\kinnari}{b}{it}
+
+\testenglish{\kinnari}{m}{sl}
+
+\testenglish{\kinnari}{b}{sl}
+
+\testEnglish{\kinnari}{m}{n}
+
+\testEnglish{\kinnari}{b}{n}
+
+\testEnglish{\kinnari}{m}{it}
+
+\testEnglish{\kinnari}{b}{it}
+
+\testEnglish{\kinnari}{m}{sl}
+
+\testEnglish{\kinnari}{b}{sl}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+\noindent
+\testligkern{\kinnari}{m}{n}
+
+\testligkern{\kinnari}{b}{n}
+
+\testligkern{\kinnari}{m}{it}
+
+\testligkern{\kinnari}{b}{it}
+
+\testligkern{\kinnari}{m}{sl}
+
+\testligkern{\kinnari}{b}{sl}
+
+\subsection{ภาษาบาลี-สันสกฤต}
+\testpali{\kinnari}{Kinnari}{m}{n}
+
+\testpali{\kinnari}{Kinnari}{b}{n}
+
+\testpali{\kinnari}{Kinnari}{m}{it}
+
+\testpali{\kinnari}{Kinnari}{b}{it}
+
+\testpali{\kinnari}{Kinnari}{m}{sl}
+
+\testpali{\kinnari}{Kinnari}{b}{sl}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{Garuda}\fontseries{b}\fontshape{n}\selectfont Garuda -- ครุฑ\protect\footnote{จากโครงการฟอนต์แห่งชาติ (National Font Project)}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\garuda}{m}{n}
+
+\testthaipoem{\garuda}{b}{n}
+
+\testthaipoem{\garuda}{m}{it}
+
+\testthaipoem{\garuda}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\garuda}{m}{n}
+
+\testenglish{\garuda}{b}{n}
+
+\testenglish{\garuda}{m}{it}
+
+\testenglish{\garuda}{b}{it}
+
+\testEnglish{\garuda}{m}{n}
+
+\testEnglish{\garuda}{b}{n}
+
+\testEnglish{\garuda}{m}{it}
+
+\testEnglish{\garuda}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\garuda}{m}{n}
+
+\testligkern{\garuda}{b}{n}
+
+\testligkern{\garuda}{m}{it}
+
+\testligkern{\garuda}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\garuda}{Garuda}{m}{n}
+
+\testpali{\garuda}{Garuda}{b}{n}
+
+\testpali{\garuda}{Garuda}{m}{it}
+
+\testpali{\garuda}{Garuda}{b}{it}
+
+\vfil\pagebreak
+
+\section{\fontspec{Norasi}\fontseries{b}\fontshape{n}\selectfont Norasi -- นรสีห์\protect\footnote{จากโครงการฟอนต์แห่งชาติ (National Font Project)}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\norasi}{m}{n}
+
+\testthaipoem{\norasi}{b}{n}
+
+\testthaipoem{\norasi}{m}{it}
+
+\testthaipoem{\norasi}{b}{it}
+
+\testthaipoem{\norasi}{m}{sl}
+
+\testthaipoem{\norasi}{b}{sl}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+\testenglish{\norasi}{m}{n}
+
+\testenglish{\norasi}{b}{n}
+
+\testenglish{\norasi}{m}{it}
+
+\testenglish{\norasi}{b}{it}
+
+\testenglish{\norasi}{m}{sl}
+
+\testenglish{\norasi}{b}{sl}
+
+\testEnglish{\norasi}{m}{n}
+
+\testEnglish{\norasi}{b}{n}
+
+\testEnglish{\norasi}{m}{it}
+
+\testEnglish{\norasi}{b}{it}
+
+\testEnglish{\norasi}{m}{sl}
+
+\testEnglish{\norasi}{b}{sl}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\norasi}{m}{n}
+
+\testligkern{\norasi}{b}{n}
+
+\testligkern{\norasi}{m}{it}
+
+\testligkern{\norasi}{b}{it}
+
+\testligkern{\norasi}{m}{sl}
+
+\testligkern{\norasi}{b}{sl}
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\norasi}{Norasi}{m}{n}
+
+\testpali{\norasi}{Norasi}{b}{n}
+
+\testpali{\norasi}{Norasi}{m}{it}
+
+\testpali{\norasi}{Norasi}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{Laksaman}\fontseries{b}\fontshape{n}\selectfont Laksaman -- ลักษมัณ\protect\footnote{ดัดแปลงจาก TH Sarabun New ของคุณศุภกิจ เฉลิมลาภ}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\laksaman}{m}{n}
+
+\testthaipoem{\laksaman}{b}{n}
+
+\testthaipoem{\laksaman}{m}{it}
+
+\testthaipoem{\laksaman}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\laksaman}{m}{n}
+
+\testenglish{\laksaman}{b}{n}
+
+\testenglish{\laksaman}{m}{it}
+
+\testenglish{\laksaman}{b}{it}
+
+\testEnglish{\laksaman}{m}{n}
+
+\testEnglish{\laksaman}{b}{n}
+
+\testEnglish{\laksaman}{m}{it}
+
+\testEnglish{\laksaman}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\laksaman}{m}{n}
+
+\testligkern{\laksaman}{b}{n}
+
+\testligkern{\laksaman}{m}{it}
+
+\testligkern{\laksaman}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\laksaman}{Laksaman}{m}{n}
+
+\testpali{\laksaman}{Laksaman}{b}{n}
+
+\testpali{\laksaman}{Laksaman}{m}{it}
+
+\testpali{\laksaman}{Laksaman}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{TlwgTypewriter}\fontseries{b}\fontshape{n}\selectfont Tlwg Typewriter\protect\footnote{โดย Thai Linux Working Group (TLWG)}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\tlwgtypewriter}{m}{n}
+
+\testthaipoem{\tlwgtypewriter}{b}{n}
+
+\testthaipoem{\tlwgtypewriter}{m}{it}
+
+\testthaipoem{\tlwgtypewriter}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\tlwgtypewriter}{m}{n}
+
+\testenglish{\tlwgtypewriter}{b}{n}
+
+\testenglish{\tlwgtypewriter}{m}{it}
+
+\testenglish{\tlwgtypewriter}{b}{it}
+
+\testEnglish{\tlwgtypewriter}{m}{n}
+
+\testEnglish{\tlwgtypewriter}{b}{n}
+
+\testEnglish{\tlwgtypewriter}{m}{it}
+
+\testEnglish{\tlwgtypewriter}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\tlwgtypewriter}{m}{n}
+
+\testligkern{\tlwgtypewriter}{b}{n}
+
+\testligkern{\tlwgtypewriter}{m}{it}
+
+\testligkern{\tlwgtypewriter}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\tlwgtypewriter}{TlwgTypewriter}{m}{n}
+
+\testpali{\tlwgtypewriter}{TlwgTypewriter}{b}{n}
+
+\testpali{\tlwgtypewriter}{TlwgTypewriter}{m}{it}
+
+\testpali{\tlwgtypewriter}{TlwgTypewriter}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{TlwgTypist}\fontseries{b}\fontshape{n}\selectfont Tlwg Typist\protect\footnote{โดย Thai Linux Working Group (TLWG)}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\tlwgtypist}{m}{n}
+
+\testthaipoem{\tlwgtypist}{b}{n}
+
+\testthaipoem{\tlwgtypist}{m}{it}
+
+\testthaipoem{\tlwgtypist}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\tlwgtypist}{m}{n}
+
+\testenglish{\tlwgtypist}{b}{n}
+
+\testenglish{\tlwgtypist}{m}{it}
+
+\testenglish{\tlwgtypist}{b}{it}
+
+\testEnglish{\tlwgtypist}{m}{n}
+
+\testEnglish{\tlwgtypist}{b}{n}
+
+\testEnglish{\tlwgtypist}{m}{it}
+
+\testEnglish{\tlwgtypist}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\tlwgtypist}{m}{n}
+
+\testligkern{\tlwgtypist}{b}{n}
+
+\testligkern{\tlwgtypist}{m}{it}
+
+\testligkern{\tlwgtypist}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\tlwgtypist}{TlwgTypist}{m}{n}
+
+\testpali{\tlwgtypist}{TlwgTypist}{b}{n}
+
+\testpali{\tlwgtypist}{TlwgTypist}{m}{it}
+
+\testpali{\tlwgtypist}{TlwgTypist}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{Purisa}\fontseries{b}\fontshape{n}\selectfont Purisa -- ภูริสา\protect\footnote{โดย Thai Linux Working Group (TLWG)}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\purisa}{m}{n}
+
+\testthaipoem{\purisa}{b}{n}
+
+\testthaipoem{\purisa}{m}{it}
+
+\testthaipoem{\purisa}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\purisa}{m}{n}
+
+\testenglish{\purisa}{b}{n}
+
+\testenglish{\purisa}{m}{it}
+
+\testenglish{\purisa}{b}{it}
+
+\testEnglish{\purisa}{m}{n}
+
+\testEnglish{\purisa}{b}{n}
+
+\testEnglish{\purisa}{m}{it}
+
+\testEnglish{\purisa}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\purisa}{m}{n}
+
+\testligkern{\purisa}{b}{n}
+
+\testligkern{\purisa}{m}{it}
+
+\testligkern{\purisa}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\purisa}{Purisa}{m}{n}
+
+\testpali{\purisa}{Purisa}{b}{n}
+
+\testpali{\purisa}{Purisa}{m}{it}
+
+\testpali{\purisa}{Purisa}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{Loma}\fontseries{b}\fontshape{n}\selectfont Loma -- โลมา\protect\footnote{จากศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ (NECTEC)}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\loma}{m}{n}
+
+\testthaipoem{\loma}{b}{n}
+
+\testthaipoem{\loma}{m}{it}
+
+\testthaipoem{\loma}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\loma}{m}{n}
+
+\testenglish{\loma}{b}{n}
+
+\testenglish{\loma}{m}{it}
+
+\testenglish{\loma}{b}{it}
+
+\testEnglish{\loma}{m}{n}
+
+\testEnglish{\loma}{b}{n}
+
+\testEnglish{\loma}{m}{it}
+
+\testEnglish{\loma}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\loma}{m}{n}
+
+\testligkern{\loma}{b}{n}
+
+\testligkern{\loma}{m}{it}
+
+\testligkern{\loma}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\loma}{Loma}{m}{n}
+
+\testpali{\loma}{Loma}{b}{n}
+
+\testpali{\loma}{Loma}{m}{it}
+
+\testpali{\loma}{Loma}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{Waree}\fontseries{b}\fontshape{n}\selectfont Waree -- วารี\protect\footnote{โดย คุณวิทยา ไตรสารวัฒนะ}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\waree}{m}{n}
+
+\testthaipoem{\waree}{b}{n}
+
+\testthaipoem{\waree}{m}{it}
+
+\testthaipoem{\waree}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\waree}{m}{n}
+
+\testenglish{\waree}{b}{n}
+
+\testenglish{\waree}{m}{it}
+
+\testenglish{\waree}{b}{it}
+
+\testEnglish{\waree}{m}{n}
+
+\testEnglish{\waree}{b}{n}
+
+\testEnglish{\waree}{m}{it}
+
+\testEnglish{\waree}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\waree}{m}{n}
+
+\testligkern{\waree}{b}{n}
+
+\testligkern{\waree}{m}{it}
+
+\testligkern{\waree}{b}{it}
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\waree}{Waree}{m}{n}
+
+\testpali{\waree}{Waree}{b}{n}
+
+\testpali{\waree}{Waree}{m}{it}
+
+\testpali{\waree}{Waree}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\umpush\fontseries{b}\fontshape{n}\selectfont Umpush -- อัมพุช\protect\footnote{โดย คุณวิทยา ไตรสารวัฒนะ}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\umpush}{l}{n}
+
+\testthaipoem{\umpush}{m}{n}
+
+\testthaipoem{\umpush}{b}{n}
+
+\testthaipoem{\umpush}{l}{it}
+
+\testthaipoem{\umpush}{m}{it}
+
+\testthaipoem{\umpush}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\umpush}{l}{n}
+
+\testenglish{\umpush}{m}{n}
+
+\testenglish{\umpush}{b}{n}
+
+\testenglish{\umpush}{l}{it}
+
+\testenglish{\umpush}{m}{it}
+
+\testenglish{\umpush}{b}{it}
+
+\testEnglish{\umpush}{l}{n}
+
+\testEnglish{\umpush}{m}{n}
+
+\testEnglish{\umpush}{b}{n}
+
+\testEnglish{\umpush}{l}{it}
+
+\testEnglish{\umpush}{m}{it}
+
+\testEnglish{\umpush}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\umpush}{l}{n}
+
+\testligkern{\umpush}{m}{n}
+
+\testligkern{\umpush}{b}{n}
+
+\testligkern{\umpush}{l}{it}
+
+\testligkern{\umpush}{m}{it}
+
+\testligkern{\umpush}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\umpush}{Umpush}{l}{n}
+
+\testpali{\umpush}{Umpush}{m}{n}
+
+\testpali{\umpush}{Umpush}{b}{n}
+
+\testpali{\umpush}{Umpush}{l}{it}
+
+\testpali{\umpush}{Umpush}{m}{it}
+
+\testpali{\umpush}{Umpush}{b}{it}
+
+\vfil\pagebreak
+
+
+\section{\fontspec{Sawasdee}\fontseries{b}\fontshape{n}\selectfont Sawasdee -- สวัสดี\protect\footnote{โดย คุณพล อุดมวิทยานุกูล}}
+
+\subsection{ตัวอย่างประโยคภาษาไทย}
+
+\testthaipoem{\sawasdee}{m}{n}
+
+\testthaipoem{\sawasdee}{b}{n}
+
+\testthaipoem{\sawasdee}{m}{it}
+
+\testthaipoem{\sawasdee}{b}{it}
+
+\subsection{ตัวอย่างภาษาอังกฤษ}
+
+\testenglish{\sawasdee}{m}{n}
+
+\testenglish{\sawasdee}{b}{n}
+
+\testenglish{\sawasdee}{m}{it}
+
+\testenglish{\sawasdee}{b}{it}
+
+\testEnglish{\sawasdee}{m}{n}
+
+\testEnglish{\sawasdee}{b}{n}
+
+\testEnglish{\sawasdee}{m}{it}
+
+\testEnglish{\sawasdee}{b}{it}
+
+
+\subsection{การจัดระดับตัวอักษรและตัวอักษรพิเศษ}
+
+\testligkern{\sawasdee}{m}{n}
+
+\testligkern{\sawasdee}{b}{n}
+
+\testligkern{\sawasdee}{m}{it}
+
+\testligkern{\sawasdee}{b}{it}
+
+
+\subsection{ภาษาบาลี-สันสกฤต}
+
+\testpali{\sawasdee}{Sawasdee}{m}{n}
+
+\testpali{\sawasdee}{Sawasdee}{b}{n}
+
+\testpali{\sawasdee}{Sawasdee}{m}{it}
+
+\testpali{\sawasdee}{Sawasdee}{b}{it}
+
+\vfil\pagebreak
+
+\end{document}

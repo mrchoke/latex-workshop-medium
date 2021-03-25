@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+\setmainfont[
+  Extension       = .otf ,
+  ItalicFont      = *-Italic ,
+  BoldFont        = *-Bold ,
+  BoldItalicFont  = *-BoldItalic ,
+  Script = Thai,
+  Mapping=tex-text
+]{Laksaman}
+
+\begin{document}
+
+ป่า ป้า ป๊ะ ป๋า ญู ฐู ฏู ญ ฐ - -- --- `fi' ``ff"
+
+\textbf{ป่า ป้า ป๊ะ ป๋า ญู ฐู ฏู ญ ฐ - -- --- `fi' ``ff"}
+
+\textit{ป่า ป้า ป๊ะ ป๋า ญู ฐู ฏู ญ ฐ - -- --- `fi' ``ff" }
+
+\textbf{\textit{ป่า ป้า ป๊ะ ป๋า ญู ฐู ฏู ญ ฐ - -- --- `fi' ``ff"}}
+\end{document}

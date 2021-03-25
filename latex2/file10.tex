@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\defaultfontfeatures{
+  Extension       = .otf ,
+  Mapping       = tex-text,
+  Script          = Default
+  }
+
+% Font families with regular, oblique, bold, and bold-oblique.
+\defaultfontfeatures[Garuda,Loma,Purisa,Sawasdee,TlwgMono,TlwgTypewriter,%
+TlwgTypist,TlwgTypo,Umpush,Waree]{
+ItalicFont      = *-Oblique ,
+BoldFont        = *-Bold ,
+BoldItalicFont  = *-BoldOblique ,
+}
+
+% TlwgMono don't has Script Default
+\defaultfontfeatures+[TlwgMono]{Script=Thai}
+
+
+% Font families with regular, italic, bold, and bold-italic.
+\defaultfontfeatures[Laksaman]{
+ItalicFont      = *-Italic ,
+BoldFont        = *-Bold ,
+BoldItalicFont  = *-BoldItalic ,
+}
+% Font families with regular, italic, oblique, bold, 
+% bold-italic, and bold-oblique.
+\defaultfontfeatures[Kinnari,Norasi]{
+ItalicFont      = *-Italic ,
+SlantedFont     = *-Oblique ,
+BoldFont        = *-Bold ,
+BoldItalicFont  = *-BoldItalic ,
+BoldSlantedFont = *-BoldOblique ,
+}
+
+\setdefaultlanguage{thai}
+ \XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 1pt \relax 
+
+\newfontfamily\thaifont{Norasi}
+\newfontfamily\thaifontsf{Garuda}
+\newfontfamily\thaifonttt{TlwgTypist}
+
+\newfontfamily\garuda{Garuda}
+\newfontfamily\norasi{Norasi}
+\newfontfamily\kinnari{Kinnari}
+\newfontfamily\laksaman{Laksaman}
+\newfontfamily\loma{Loma}
+\newfontfamily\purisa{Purisa}
+\newfontfamily\sawasdee{Sawasdee}
+\newfontfamily\tlwgtypist{TlwgTypist}
+\newfontfamily\tlwgtypo{TlwgTypo}
+\newfontfamily\tlwgmono{TlwgMono}
+\newfontfamily\tlwgtypewriter{TlwgTypewriter}
+\newfontfamily\umpush{Umpush}[
+  FontFace = {l}{n}{ Font = *-Light },
+  FontFace = {l}{it}{ Font = *-LightOblique }
+]
+\newfontfamily\waree{Waree}
+
+\begin{document}
+
+\begin{description}
+  \item[Roman]   การพิมพ์ภาษาไทย --  English
+  \item[\sffamily{}Sans]  \sffamily  การพิมพ์ภาษาไทย -- English
+  \item[\ttfamily{}Typewriter] \ttfamily  การพิมพ์ภาษาไทย -- English
+\end{description}
+
+\begin{itemize}
+  \item \kinnari Kinnari สวัสดีชาวโลก
+  \item \garuda Garuda สวัสดีชาวโลก
+  \item \norasi Norasi สวัสดีชาวโลก
+  \item \laksaman Laksaman สวัสดีชาวโลก
+  \item \purisa Purisa สวัสดีชาวโลก
+  \item \loma Loma สวัสดีชาวโลก
+  \item \sawasdee Sawasdee สวัสดีชาวโลก
+  \item \tlwgtypewriter TlwgTypewriter สวัสดีชาวโลก
+  \item \tlwgtypist TlwgtTypist สวัสดีชาวโลก
+  \item \umpush Umpush สวัสดีชาวโลก
+  \item \waree Waree สวัสดีชาวโลก
+\end{itemize}
+
+\begin{description}
+  \item[\textbf{ตัวหนา}]  \bfseries ปาป่าป้าป๊าป๋า
+  \item[\textit{ตัวเอียง}]  \itshape ปาป่าป้าป๊าป๋า
+\end{description}
+
+
+\begin{itemize}
+  \item \fontseries{m}\fontshape{n}\selectfont ปาป่าป้าป๊าป๋า
+  \item \fontseries{m}\fontshape{it}\selectfont ปาป่าป้าป๊าป๋า
+  \item \fontseries{b}\fontshape{n}\selectfont ปาป่าป้าป๊าป๋า
+  \item \fontseries{b}\fontshape{it}\selectfont ปาป่าป้าป๊าป๋า
+\end{itemize}
+
+\begin{itemize}
+  \item \umpush\fontseries{l}\fontshape{n}\selectfont ปาป่าป้าป๊าป๋า
+  \item \umpush\fontseries{m}\fontshape{n}\selectfont ปาป่าป้าป๊าป๋า
+  \item \umpush\fontseries{l}\fontshape{it}\selectfont ปาป่าป้าป๊าป๋า
+  \item \umpush\fontseries{m}\fontshape{it}\selectfont ปาป่าป้าป๊าป๋า
+  \item \umpush\fontseries{b}\fontshape{n}\selectfont ปาป่าป้าป๊าป๋า
+  \item \umpush\fontseries{b}\fontshape{it}\selectfont ปาป่าป้าป๊าป๋า
+\end{itemize}
+
+\end{document}
