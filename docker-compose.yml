@@ -1,0 +1,9 @@
+version: '2.2'
+services:
+  texlive:
+    image: mrchoke/texlive
+    container_name: texlive2020
+    command: ['sleep','infinity']
+    volumes:
+      - ./:/root/data
+
